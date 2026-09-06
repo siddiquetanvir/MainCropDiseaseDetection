@@ -2,14 +2,19 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 
+@st.cache_resource
+def load_model():
+    return tf.keras.models.load_model('crop_disease_model_final.keras')
+
 def model_prediction(test_image):
-    model = tf.keras.models.load_model('crop_disease_model_final.keras')
+    model = load_model()
     image = tf.keras.preprocessing.image.load_img(test_image, target_size=(180, 180))
     input_arr = tf.keras.preprocessing.image.img_to_array(image)
     input_arr = np.array([input_arr])  # Convert single image to a batch.
     prediction = model.predict(input_arr)
     result_index = np.argmax(prediction)
     return result_index
+
 
 
 #Sidebar
