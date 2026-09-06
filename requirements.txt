@@ -1,5 +1,5 @@
 streamlit
-python >= 3.8 <3.12
+python<=3.12
 tensorflow-cpu>=2.16.1
 numpy<2.0.0
 Pillow
